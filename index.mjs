@@ -27,7 +27,7 @@ const main = async () => {
 
   setTimeout(async () => {
     clearAndDisplay('');
-    const logMessage = `Reports sending by @MogaTeam to WhatsApp number @${username}`;
+    const logMessage = `Reports sending by @UMG Team to WhatsApp number @${username}`;
     const gradientLogMessage = createGradientText(logMessage, ['#00c6ff', '#0072ff']);
     clearAndDisplay(gradientLogMessage);
 
