@@ -2,6 +2,9 @@ import readline from 'readline';
 import gradient from 'gradient-string';
 import cliProgress from 'cli-progress';
 
+// Copyright Notice
+console.log(gradient(['#ff5f6d', '#ffc371'])('© 2025 UMG Team. All rights reserved.'));
+
 // Create a progress bar instance
 const progressBar = new cliProgress.SingleBar({}, cliProgress.Presets.shades_classic);
 
@@ -35,6 +38,24 @@ const randomStatusMessages = [
 
 const getRandomMessage = () => randomStatusMessages[Math.floor(Math.random() * randomStatusMessages.length)];
 
+// Matrix Effect
+const matrixEffect = () => {
+  const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+  const columns = process.stdout.columns;
+  const rows = process.stdout.rows;
+  let matrix = Array.from({ length: rows }, () => Array.from({ length: columns }, () => chars[Math.floor(Math.random() * chars.length)]));
+
+  const renderMatrix = () => {
+    console.clear();
+    matrix.forEach(row => console.log(row.join('')));
+    matrix = matrix.slice(1);
+    matrix.push(Array.from({ length: columns }, () => chars[Math.floor(Math.random() * chars.length)]));
+  };
+
+  const interval = setInterval(renderMatrix, 100);
+  setTimeout(() => clearInterval(interval), 3000); // Stop after 3 seconds
+};
+
 const countdown = async (seconds) => {
   for (let i = seconds; i > 0; i--) {
     clearAndDisplay(createGradientText(`Starting in ${i} seconds...`, ['#ff5f6d', '#ffc371']));
@@ -43,6 +64,13 @@ const countdown = async (seconds) => {
 };
 
 const main = async () => {
+  // Display current time
+  const currentTime = new Date().toLocaleTimeString();
+  console.log(gradient(['#00c6ff', '#0072ff'])`Current Time: ${currentTime}`));
+
+  // Matrix Effect
+  matrixEffect();
+
   // Choose gradient theme
   const themePrompt = createGradientText("Choose a gradient theme (1: Red/Orange, 2: Blue/Cyan, 3: Purple/Pink): ", ['#ff5f6d', '#ffc371']);
   const themeChoice = await getUserInput(themePrompt);
